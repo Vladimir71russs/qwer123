@@ -1,0 +1,110 @@
+import time
+
+class Game:
+    def __init__(self):
+        self.player_name = ""
+        self.health = 100
+        self.inventory = []
+        self.location = "village"
+        self.score = 0
+
+    def intro(self):
+        print("Добро пожаловать в текстовую приключенческую игру!")
+        time.sleep(1)
+        self.player_name = input("Как тебя зовут, герой? ")
+        print(f"Привет, {self.player_name}!")
+        time.sleep(1)
+        self.main_menu()
+
+    def main_menu(self):
+        while True:
+            print("\nТы стоишь на площади в деревне. Куда ты хочешь пойти?")
+            print("1. В магазин")
+            print("2. В лес")
+            print("3. В таверну")
+            print("4. Выйти из игры")
+            choice = input("Выбери действие (1-4): ")
+
+            if choice == '1':
+                self.shop()
+            elif choice == '2':
+                self.forest()
+            elif choice == '3':
+                self.tavern()
+            elif choice == '4':
+                self.exit_game()
+            else:
+                print("Неверный выбор, попробуй снова.")
+
+    def shop(self):
+        print("\nТы входишь в магазин и видишь различные товары.")
+        print("1. Купить лечебный зелье (10 монет)")
+        print("2. Купить меч (30 монет)")
+        print("3. Выйти из магазина")
+        choice = input("Что ты хочешь сделать? (1-3): ")
+
+        if choice == '1':
+            if self.score >= 10:
+                self.inventory.append("лечебное зелье")
+                self.score -= 10
+                print("Ты купил лечебное зелье!")
+            else:
+                print("У тебя недостаточно монет.")
+        elif choice == '2':
+            if self.score >= 30:
+                self.inventory.append("меч")
+                self.score -= 30
+                print("Ты купил меч!")
+            else:
+                print("У тебя недостаточно монет.")
+        elif choice == '3':
+            print("Ты покидаешь магазин.")
+        else:
+            print("Неверный выбор, попробуй снова.")
+
+    def forest(self):
+        print("\nТы идешь в лес. Вдруг перед тобой появляется дикая зверюга!")
+        print("1. Бежать")
+        print("2. Сражаться")
+        choice = input("Что ты хочешь сделать? (1-2): ")
+
+        if choice == '1':
+            print("Ты убегал, но зверь успел поранить тебя.")
+            self.health -= 10
+            print(f"Твое здоровье: {self.health}")
+        elif choice == '2':
+            if "меч" in self.inventory:
+                print("Ты сразился с зверем и победил!")
+                self.score += 20
+                print(f"Твои монеты: {self.score}")
+            else:
+                print("У тебя нет оружия, зверь победил тебя.")
+                self.health -= 20
+                print(f"Твое здоровье: {self.health}")
+        else:
+            print("Неверный выбор, попробуй снова.")
+
+    def tavern(self):
+        print("\nТы заходишь в таверну и встречаешь старого знакомого.")
+        print("1. Поговорить")
+        print("2. Напиться")
+        choice = input("Что ты хочешь сделать? (1-2): ")
+
+        if choice == '1':
+            print("Вы поговорили о старых временах. Твой моральный дух повысился!")
+            self.health += 10
+            print(f"Твое здоровье: {self.health}")
+        elif choice == '2':
+            print("Ты напился и потерял немного сознания. Твое здоровье уменьшилось.")
+            self.health -= 5
+            print(f"Твое здоровье: {self.health}")
+        else:
+            print("Неверный выбор, попробуй снова.")
+
+    def exit_game(self):
+        print("\nТы покидаешь игру. До новых встреч!")
+        exit()
+
+if __name__ == "__main__":
+    game = Game()
+    game.intro()
