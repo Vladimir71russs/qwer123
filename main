@@ -103,7 +103,7 @@ erfd
 
     def exit_game(self):
         print("\nТы покидаешь игру. До новых встреч!")
-        exit()
+        exit()rt
 
 if __name__ == "__main__":
     game = Game()
