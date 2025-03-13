@@ -15,7 +15,7 @@ class Game:
         print(f"Привет, {self.player_name}!")
         time.sleep(1)
         self.main_menu()
-erfd
+erfd111
     def main_menu(self):
         while True:
             print("\nТы стоишь на площади в деревне. Куда ты хочешь пойти?")
