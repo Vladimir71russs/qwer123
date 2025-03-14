@@ -5,7 +5,7 @@ class Game:
         self.player_name = ""
         self.health = 100
         self.inventory = []
-        self.location = "village"
+        self.location = "village"аа
         self.score = 0
 
     def intro(self):
